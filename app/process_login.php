@@ -15,7 +15,7 @@ if ($_POST) {
     $user = $_POST['user'];
     $pass = $_POST['password'];
 
-    $sql = "SELECT username, salary FROM users WHERE username = '$user' AND password = '$pass'";
+    $sql = "SELECT username, CONCAT(first_name, ' ', last_name), salary FROM users WHERE username = '$user' AND password = '$pass'";
     error_log("QUERY:" . $sql);
 
     if ($conn->multi_query($sql)) {
