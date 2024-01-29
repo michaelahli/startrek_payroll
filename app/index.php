@@ -5,67 +5,98 @@ $db_username = $_SERVER["MYSQL_USER"];
 $db_password = $_SERVER["MYSQL_PASSWORD"];
 
 $conn = new mysqli($host, $db_username, $db_password, $db_name);
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-?>
 
-<?php
 if (!isset($_POST['s'])) {
-?>
-    <center>
-        <form action="" method="post">
-            <h2>Payroll Login</h2>
-            <table style="border-radius: 25px; border: 2px solid black; padding: 20px;">
-                <tr>
-                    <td>User</td>
-                    <td><input type="text" name="user"></td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><input type="password" name="password"></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" value="OK" name="s">
-                </tr>
-            </table>
-        </form>
-    </center>
-<?php
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Payroll Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <style>
+            body {
+                background-color: #f8f9fa;
+                padding-top: 50px;
+            }
+
+            form {
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 15px;
+                background-color: #ffffff;
+                border: 1px solid #dee2e6;
+                border-radius: 5px;
+                margin-top: 50px;
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .container {
+                margin-top: 50px;
+            }
+
+            .result-container {
+                max-width: 600px;
+                margin: 0 auto;
+                margin-top: 50px;
+            }
+
+            .result-table {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <form id="loginForm">
+                <h2>Payroll Login</h2>
+                <div class="form-group">
+                    <label for="user">User:</label>
+                    <input type="text" class="form-control" name="user" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                <button type="button" class="btn btn-primary" id="loginBtn">OK</button>
+            </form>
+        </div>
+
+        <div id="resultContainer" class="container result-container"></div>
+
+        <script>
+            $(document).ready(function () {
+                $("#loginBtn").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "process_login.php", // Update this with the correct file path or endpoint
+                        data: $("#loginForm").serialize(),
+                        success: function (response) {
+                            $("#resultContainer").html(response);
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+
+    </html>
+
+    <?php
+} else {
+    // If you want to handle the login logic in the same file, you can place it here.
 }
 ?>
 
-<?php
-if ($_POST) {
-    $user = $_POST['user'];
-    error_log("USERNAME:" . $user);
-    $pass = $_POST['password'];
-    error_log("PASSWORD:" . $pass);
-    $sql = "select username, salary from users where username = '$user' and password = '$pass'";
-    error_log("QUERY:" . $sql);
-
-    if ($conn->multi_query($sql)) {
-        do {
-            /* store first result set */
-            echo "<center>";
-            echo "<h2>Welcome, " . $user . "</h2><br>";
-            echo "<table style='border-radius: 25px; border: 2px solid black;' cellspacing=30>";
-            echo "<tr><th>Username</th><th>Salary</th></tr>";
-            if ($result = $conn->store_result()) {
-                while ($row = $result->fetch_assoc()) {
-                    $keys = array_keys($row);
-                    echo "<tr>";
-                    foreach ($keys as $key) {
-                        echo "<td>" . $row[$key] . "</td>";
-                    }
-                    echo "</tr>\n";
-                }
-                $result->free();
-            }
-            if (!$conn->more_results()) {
-                echo "</table></center>";
-            }
-        } while ($conn->next_result());
-    }
-}
-?>
