@@ -21,9 +21,9 @@ if ($_POST) {
     if ($conn->multi_query($sql)) {
         do {
             echo "<div class='container result-container'>";
-            echo "<h2 class='text-center'>Welcome, " . $user . "</h2><br>";
+            echo "<h2 class='text-center'>Gaji anda bulan ini, " . $user . "</h2><br>";
             echo "<table class='table table-bordered result-table'>";
-            echo "<thead class='thead-light'><tr><th>Username</th><th>Salary</th></tr></thead><tbody>";
+            echo "<thead class='thead-light'><tr><th>Nama Karyawan</th><th>Nama Lengkap</th><th>Gaji Bersih</th></tr></thead><tbody>";
 
             if ($result = $conn->store_result()) {
                 while ($row = $result->fetch_assoc()) {

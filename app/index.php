@@ -18,7 +18,7 @@ if (!isset($_POST['s'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Payroll Login</title>
+        <title>Cek Payroll</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <style>
@@ -61,7 +61,7 @@ if (!isset($_POST['s'])) {
     <body>
         <div class="container">
             <form id="loginForm">
-                <h2>Payroll Login</h2>
+                <h2>Cek Payroll</h2>
                 <div class="form-group">
                     <label for="user">User:</label>
                     <input type="text" class="form-control" name="user" required>

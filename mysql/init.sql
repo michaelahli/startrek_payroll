@@ -39,13 +39,13 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`username`, `first_name`, `last_name`, `password`, `salary`) VALUES
-('james_kirk','James','Kirk','kobayashi_maru','2500000'),
-('mr_spock','Mr','Spock','0nlyL0g!c','990000'),
-('leonard_mccoy','Leonard','McCoy','hesDEADjim!','4500000'),
-('nyota_uhura','Nyota','Uhura','StarShine','3900000'),
-('montgomery_scott','Montgomery','Scott','ScottyDoesntKnow','1250000'),
-('hiraku_sulu','Hikaru','Sulu','parking-break-on','3500000'),
-('pavel_chekov','Pavel','Chekov','99victorvictor2','2500000');
+('whoami','Chika','Smith','supersecret','2500000'),
+('mr_spock','Dimas','Setyo','0nlyL0g!c','990000'),
+('leonard_mccoy','Leonard','Cahyadi','hesDEADjim!','4500000'),
+('nyota_uhura','Fitri','Saputri','StarShine','3900000'),
+('montgomery_scott','Gading','Scott','ScottyDoesntKnow','1250000'),
+('hiraku_sulu','Jonathan','Sulu','parking-break-on','3500000'),
+('pavel_chekov','Keyla','Chekov','99victorvictor2','2500000');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
